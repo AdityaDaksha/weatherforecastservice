@@ -1,0 +1,97 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is a weather forecast api.",
+    "version": "1.0.0",
+    "title": "Weather forecast",
+    "contact": {
+      "email": "contacttoaditya09@gmail.com"
+    }
+  },
+  "basePath": "/api/weatherforecast/v1",
+  "tags": [
+    {
+      "name": "data",
+      "description": "next 3 days forecast of temprature and pressure"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/data/{city}": {
+      "get": {
+        "tags": [
+          "data"
+        ],
+        "summary": "Find next 3 days weather forecast for city",
+        "description": "Returns a average temprature and pressure for next 3 days",
+        "operationId": "getTempratureAndPressureByCity",
+        "produces": [
+          "application/xml",
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "description": "city code to return",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/forecastDataResults"
+            }
+          },
+          "400": {
+            "description": "Invalid city supplied"
+          },
+          "404": {
+            "description": "data not found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "forecastDataResults": {
+      "description": "successful operation",
+      "type": "array",
+      "items" : { 
+      	"$ref" : "#/definitions/forecastData" 
+      }
+    },
+    "forecastData": {
+      "type": "object",
+      "required": [
+        "cityName"
+      ],
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "cityName": {
+          "type": "string",
+          "example": "Brisbane,AU"
+        },
+        "dailyTemprature": {
+          "type": "number",
+          "format": "double"
+        },
+        "nightlyTemprature": {
+          "type": "number",
+          "format": "double"
+        },
+        "pressure": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    }
+  }
+}
