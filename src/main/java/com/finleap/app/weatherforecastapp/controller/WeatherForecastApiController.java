@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.finleap.app.weatherforecastapp.exception.WeatherForecastException;
@@ -28,12 +29,12 @@ public class WeatherForecastApiController implements WeatherForecastApi {
 	private ForecastService forecastService;
 	
 	@Override
-	public ResponseEntity<ForecastDataResults> getTempratureAndPressureByCity(String cityName,
+	public ResponseEntity<ForecastDataResults> getTempratureAndPressureByCity(@PathVariable String city,
 			HttpServletRequest request) {
-		LOOGER.info("Fetching data for city: " + cityName);
+		LOOGER.info("Fetching data for city: " + city);
 		ForecastDataResults result = new ForecastDataResults();
 		try {
-			result = forecastService.getThreeDaysWeatherForecast(cityName);
+			result = forecastService.getThreeDaysWeatherForecast(city);
 		} catch (WeatherForecastException e) {
 			LOOGER.error(e.getMessage(), e);
 			return new ResponseEntity<>(result, HttpStatus.valueOf(e.getErrorCode()));

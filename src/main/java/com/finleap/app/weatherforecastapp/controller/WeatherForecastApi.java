@@ -23,5 +23,5 @@ import com.finleap.model.ForecastDataResults;
 public interface WeatherForecastApi {
 
 	@RequestMapping(value ="data/{city}", method = RequestMethod.GET)
-	ResponseEntity<ForecastDataResults> getTempratureAndPressureByCity(@PathVariable("city") String cityName, HttpServletRequest request);
+	ResponseEntity<ForecastDataResults> getTempratureAndPressureByCity(@PathVariable("city") String city, HttpServletRequest request);
 }
