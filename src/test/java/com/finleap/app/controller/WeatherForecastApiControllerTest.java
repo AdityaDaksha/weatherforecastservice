@@ -15,9 +15,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.finleap.app.weatherforecastApp.WeatherForecastApp;
-import com.finleap.app.weatherforecastApp.model.ForecastData;
-import com.finleap.app.weatherforecastApp.model.ForecastDataResults;
+import com.finleap.app.weatherforecastapp.WeatherForecastApp;
+import com.finleap.model.ForecastData;
+import com.finleap.model.ForecastDataResults;
 
 /**
  * @author adityapratap

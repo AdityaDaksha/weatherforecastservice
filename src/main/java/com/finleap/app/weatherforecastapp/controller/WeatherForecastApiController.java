@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.finleap.app.weatherforecastApp.controller;
+package com.finleap.app.weatherforecastapp.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -11,9 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.finleap.app.weatherforecastApp.exception.WeatherForecastException;
-import com.finleap.app.weatherforecastApp.model.ForecastDataResults;
-import com.finleap.app.weatherforecastApp.service.ForecastService;
+import com.finleap.app.weatherforecastapp.exception.WeatherForecastException;
+import com.finleap.app.weatherforecastapp.service.ForecastService;
+import com.finleap.model.ForecastDataResults;
 
 /**
  * @author adityapratap
@@ -36,9 +36,9 @@ public class WeatherForecastApiController implements WeatherForecastApi {
 			result = forecastService.getThreeDaysWeatherForecast(cityName);
 		} catch (WeatherForecastException e) {
 			LOOGER.error(e.getMessage(), e);
-			return new ResponseEntity<ForecastDataResults>(result, HttpStatus.resolve(e.getErrorCode()));
+			return new ResponseEntity<>(result, HttpStatus.valueOf(e.getErrorCode()));
 		}
-		return new ResponseEntity<ForecastDataResults>(result, HttpStatus.OK);
+		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 
 }

@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.5.RELEASE</version>
+		<version>1.4.2.RELEASE</version>
 	</parent>
 
 	<groupId>finleap</groupId>
@@ -54,17 +54,14 @@
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>2.9.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
-			<version>2.9.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.9.0</version>
 		</dependency>
 
 		<dependency>
@@ -91,16 +88,11 @@
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
-			<version>1.10.19</version>
 			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/net.aksingh/owm-japis -->
-		<dependency>
-		    <groupId>net.aksingh</groupId>
-		    <artifactId>owm-japis</artifactId>
-		    <version>2.5.2.3</version>
-		</dependency>
-				
+		<!-- <dependency> <groupId>net.aksingh</groupId> <artifactId>owm-japis</artifactId> 
+			<version>2.5.2.3</version> </dependency> -->
 	</dependencies>
 
 	<build>
@@ -110,29 +102,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>io.swagger</groupId>
-				<artifactId>swagger-codegen-maven-plugin</artifactId>
-				<version>2.2.3</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<configOptions>
-						<sourceFolder>main/java</sourceFolder>
-						<dateLibrary>java8</dateLibrary>
-					</configOptions>
-					<output>${project.build.directory}/generated-sources</output>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<inputSpec>src/main/resources/WeatherForecastAPI.json</inputSpec>
-							<language>java</language>
-							<configurationFile>src/main/resources/swaggercodegenconfig.json</configurationFile>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>

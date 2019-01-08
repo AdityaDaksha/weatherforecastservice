@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.finleap.app.weatherforecastApp;
+package com.finleap.app.weatherforecastapp;
 
 import org.apache.log4j.Logger;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

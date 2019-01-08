@@ -1,6 +1,0 @@
-{
-	"modelPackage": "com.finleap.model",
-	"apiPackage": "com.finleap.api",
-	"library": "resttemplate",
-	"sourceFolder": "src"
-}

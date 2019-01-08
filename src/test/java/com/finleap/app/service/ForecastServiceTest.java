@@ -11,9 +11,9 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.finleap.app.weatherforecastApp.exception.WeatherForecastException;
-import com.finleap.app.weatherforecastApp.model.ForecastDataResults;
-import com.finleap.app.weatherforecastApp.service.ForecastService;
+import com.finleap.app.weatherforecastapp.exception.WeatherForecastException;
+import com.finleap.app.weatherforecastapp.service.ForecastService;
+import com.finleap.model.ForecastDataResults;
 
 /**
  * @author adityapratap

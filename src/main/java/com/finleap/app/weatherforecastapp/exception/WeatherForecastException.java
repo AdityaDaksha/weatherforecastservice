@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.finleap.app.weatherforecastApp.exception;
+package com.finleap.app.weatherforecastapp.exception;
 
 /**
  * @author adityapratap
