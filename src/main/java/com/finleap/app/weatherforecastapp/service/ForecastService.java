@@ -5,19 +5,19 @@ package com.finleap.app.weatherforecastapp.service;
 
 import java.util.List;
 
-import net.aksingh.owmjapis.api.APIException;
-import net.aksingh.owmjapis.core.OWM;
-import net.aksingh.owmjapis.core.OWM.Country;
-import net.aksingh.owmjapis.core.OWM.Unit;
-import net.aksingh.owmjapis.model.DailyWeatherForecast;
-import net.aksingh.owmjapis.model.param.ForecastData;
-import net.aksingh.owmjapis.model.param.Temp;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.finleap.app.weatherforecastapp.exception.WeatherForecastException;
 import com.finleap.model.ForecastDataResults;
+
+import net.aksingh.owmjapis.api.APIException;
+import net.aksingh.owmjapis.core.OWM;
+import net.aksingh.owmjapis.core.OWM.Unit;
+import net.aksingh.owmjapis.model.DailyWeatherForecast;
+import net.aksingh.owmjapis.model.HourlyWeatherForecast;
+import net.aksingh.owmjapis.model.param.ForecastData;
+import net.aksingh.owmjapis.model.param.Temp;
 
 /**
  * @author adityapratap
@@ -28,7 +28,7 @@ public class ForecastService {
 
 	private static final Logger LOOGER = Logger.getLogger(ForecastService.class);
 
-	private static final String OWM_API_KEY = "cb2fb8f4640e9f56ab8b38a6e31e56d1";
+	private static final String OWM_API_KEY = "c42cf91caf9d5bb3c3d8a676ecab0224";
 	
 	public ForecastDataResults getThreeDaysWeatherForecast(String city) throws WeatherForecastException {
 		return  fetchData(city);
@@ -43,8 +43,8 @@ public class ForecastService {
 		//for temperature in Celsius.
 		owm.setUnit(Unit.METRIC);
 		try {
-			Country countryCode = Country.valueOf(weatherCity.toUpperCase());
-			DailyWeatherForecast forecast = owm.dailyWeatherForecastByCityName(weatherCity, countryCode, forecastDays);
+			DailyWeatherForecast forecast = owm.dailyWeatherForecastByCityName(weatherCity, forecastDays);
+			
 			LOOGER.info("Weather for: " + forecast.getCityData().getName());
 			List<ForecastData> dayForecast = forecast.getDataList();
 			for (ForecastData forcastData : dayForecast) {
