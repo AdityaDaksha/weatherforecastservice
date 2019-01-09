@@ -31,9 +31,16 @@ public class ForecastServiceTest {
 	    forecastService = new ForecastService();
 	}
 	
-	@Test(expected = WeatherForecastException.class)
+	@Test
 	public void testThreeDaysWeatherForecast() throws WeatherForecastException {
 		String city = "Mumbai";
+		ForecastDataResults  forecastDataResults = forecastService.getThreeDaysWeatherForecast(city);
+		Assert.assertEquals(3, forecastDataResults.size());
+	}
+	
+	@Test(expected = WeatherForecastException.class)
+	public void testThreeDaysWeatherForecastWithWrongCityName() throws WeatherForecastException {
+		String city = "xyz";
 		ForecastDataResults  forecastDataResults = forecastService.getThreeDaysWeatherForecast(city);
 		Assert.assertEquals(0, forecastDataResults.size());
 	}

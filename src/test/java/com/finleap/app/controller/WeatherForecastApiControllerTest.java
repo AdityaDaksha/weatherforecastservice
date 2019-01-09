@@ -20,6 +20,7 @@ import com.finleap.model.ForecastData;
 import com.finleap.model.ForecastDataResults;
 
 /**
+ * 
  * @author adityapratap
  *
  */
@@ -32,7 +33,7 @@ public class WeatherForecastApiControllerTest {
     private MockMvc mvc;
 	
 	@Test
-	public void givenCity_whenNotAuthorized_then4xxClientError()
+	public void givenCity_whenAuthorized_then2xxSucessful()
 	  throws Exception {
 	     
 	    ForecastData data = new ForecastData();
@@ -41,6 +42,20 @@ public class WeatherForecastApiControllerTest {
 	    results.add(data);
 	    
 	    mvc.perform(get("/data/Mumbai")
+	      .contentType(MediaType.APPLICATION_JSON))
+	      .andExpect(status().is2xxSuccessful());
+	}
+	
+	@Test
+	public void givenCity_whenAuthorized_then4xxClientError()
+	  throws Exception {
+	     
+	    ForecastData data = new ForecastData();
+	    data.setCityName("xyz");
+	    ForecastDataResults results = new  ForecastDataResults();
+	    results.add(data);
+	    
+	    mvc.perform(get("/data/xyz")
 	      .contentType(MediaType.APPLICATION_JSON))
 	      .andExpect(status().is4xxClientError());
 	}

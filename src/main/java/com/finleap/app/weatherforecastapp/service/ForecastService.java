@@ -6,15 +6,7 @@ package com.finleap.app.weatherforecastapp.service;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import net.aksingh.owmjapis.api.APIException;
-import net.aksingh.owmjapis.core.OWM;
-import net.aksingh.owmjapis.core.OWM.Unit;
-import net.aksingh.owmjapis.model.HourlyWeatherForecast;
-import net.aksingh.owmjapis.model.param.Main;
-import net.aksingh.owmjapis.model.param.WeatherData;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -22,6 +14,13 @@ import org.springframework.stereotype.Service;
 import com.finleap.app.weatherforecastapp.exception.WeatherForecastException;
 import com.finleap.model.ForecastDataResults;
 import com.google.common.collect.Lists;
+
+import net.aksingh.owmjapis.api.APIException;
+import net.aksingh.owmjapis.core.OWM;
+import net.aksingh.owmjapis.core.OWM.Unit;
+import net.aksingh.owmjapis.model.HourlyWeatherForecast;
+import net.aksingh.owmjapis.model.param.Main;
+import net.aksingh.owmjapis.model.param.WeatherData;
 
 /**
  * @author adityapratap
@@ -56,7 +55,7 @@ public class ForecastService {
 			int i = 1;
 			for (List<WeatherData> wlist : partitionedList) {
 				com.finleap.model.ForecastData data = calculateTempAndPressure(weatherCity, wlist);
-				data.setDate("day + " + i++);
+				data.setDate("day-" + i++);
 				forecastDataResults.add(data);
 				LOOGER.info("\tdata: " + data.toString() + "\n");
 			}
@@ -95,9 +94,9 @@ public class ForecastService {
 	}
 
 	private List<WeatherData> getWorkingSet(HourlyWeatherForecast hForecast) {
-		Date dt = new Date();
-		LocalDateTime startDateAt6 = LocalDateTime.from(dt.toInstant()).plusDays(1).toLocalDate().atTime(6, 0, 0);
-		LocalDateTime endDateAt18 = LocalDateTime.from(dt.toInstant()).plusDays(4).toLocalDate().atTime(3, 0, 0);
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime startDateAt6 = now.plusDays(1).toLocalDate().atTime(6, 0, 0);
+		LocalDateTime endDateAt18 = now.plusDays(4).toLocalDate().atTime(3, 0, 0);
 		
 		List<WeatherData> workingData = new ArrayList<>();
 		if("200".equals(hForecast.getRespCode())) {
