@@ -24,5 +24,6 @@ Calculation of temperature and pressure is in the owm-japis lib. **DailyWeatherF
 
 owm-japis library internally calls https://openweathermap.org apis to get the data. And to fetch the data from openweathermap.org I have created the API key and have hardcoded at the backend for now.
 
+In the recent update I have used **HourlyWeatherForecast** as this is free to use. Earlier was paid one. 
 
 **Note**- if maven is not able to resolve the owm-japis dependency please download from https://search.maven.org/search?q=a:owm-japis and include it to classpath.
